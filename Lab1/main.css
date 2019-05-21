@@ -85,13 +85,3 @@ body {
     background-color:  #b983a7;
     color: white;
 }
-
-.restaurants {
-    display: flex;
-    flex-direction: column;
-}
-
-.restaurant {
-    display: flex;
-    flex-direction: row;
-}

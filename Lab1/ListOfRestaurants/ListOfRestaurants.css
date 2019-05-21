@@ -18,6 +18,12 @@
     margin: 10px 0px;
 }
 
+.restaurant:hover {
+    border: solid 2px #b983a7;
+    background-color:  #b983a7;
+    color: white;
+}
+
 .rest-name{
     flex:1;
 }
