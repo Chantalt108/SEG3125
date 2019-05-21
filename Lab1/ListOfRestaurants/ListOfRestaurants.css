@@ -1,3 +1,49 @@
-img.img1{
-    max-width: 200px;
+@import "../main.css"; 
+
+.restaurants {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+}
+
+.restaurant {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border:solid 2px #8f0c63; 
+    border-radius: 10px;
+    padding: 10px;  
+    margin: 10px 0px;
+}
+
+.restaurant:hover {
+    border: solid 2px #b983a7;
+    background-color:  #b983a7;
+    color: white;
+}
+
+.rest-name{
+    flex:1;
+}
+.rest-rating{
+    flex:1;
+}
+.rest-address{
+    flex:1;
+}
+.rest-cuisine{
+    flex:1;
+}
+.rest-pricerange{
+    flex:1;
+}
+.rest-hours{
+    flex:1;
+}
+
+.rest-image {
+    flex:1;
+    max-width: 100%;
 }

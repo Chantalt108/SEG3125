@@ -1,3 +1,46 @@
-img.img1{
-    max-width: 100px;
+@import "../main.css"; 
+
+.rest-name {
+    color:  #8f0c63;
+    font-size: 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    border:solid 2px #8f0c63; 
+    border-radius: 10px;
+    padding: 10px;  
+    margin: 10px 10px 10px 0px;
+    width: 30%;
+}
+
+.item-name {
+    flex:1.5;
+}
+
+.item-price {
+    flex:1;
+}
+
+.add-to-cart {
+    flex:1;
+    margin-left: 10px;
+    border:solid 1px #8f0c63;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.add-to-cart:hover {
+    border: solid 1px #b983a7;
+    background-color:  #b983a7;
+    color: white;
+}
+
+.item-image {
+    max-width: 150px;
 }
