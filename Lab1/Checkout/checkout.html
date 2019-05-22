@@ -1,9 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel = "stylesheet" type = "text/css" href = "../main.css" />
+        <link rel = "stylesheet" type = "text/css" href = "checkout.css" />
     </head>
     <body>
-
+        <div class="header">
+            <h1 class="logo">EAT FOOD</h1>
+        </div>
+        <h2 class="cart-header">Checkout</h2>
+        <div class="summary">
+            <div class="cart-item">    
+                <div class="item">Pizza</div>
+                <div class="price">$5</div>
+                <div class="quantity">Quantity: 1</div>
+            </div>
+            
+            <div class="cart-item">
+                <div class="item">Burger</div>
+                <div class="price">$10</div>
+                <div class="quantity">Quantity: 2</div>
+            </div>
+        </div>
+        <div class="details">
+            <div class="total">
+                <div class="totalPriceText">Total Price:</div>
+                <div class="totalPrice">$25</div>
+            </div>
+        </div>
+        <div class="payment">
+            <div class="payOpt">Payment Option: <br>
+                <select>
+                    <option value="Debit">Debit</option>
+                    <option value="Credit">Credit</osption>
+                    <option value="Cash">Cash on Delivery</option>
+                </select> 
+            </div>
+        </div>
+        <div class="address">
+            <div class="addressIn">Address: 
+                <br>
+                <textarea rows="1" cols="50"></textarea></div>
+        </div>
+        <button class="checkout" type="button">Confirm Order</button>
     </body>
 </html>
