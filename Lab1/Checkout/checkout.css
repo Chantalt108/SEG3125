@@ -1,0 +1,82 @@
+@import "../main.css"; 
+
+.cart-header {
+    font-size: 20px;
+    color: #9b9999;
+    font-weight: normal;
+}
+
+.summary {
+    border:solid 1px #8f0c63; 
+    border-radius: 10px;
+    margin: 10px 10px 10px 0px;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.item {
+    flex: 1;
+}
+
+.price {
+    flex: 1;
+}
+
+.quantity {
+    flex: 1;
+}
+
+.checkout {
+    float: right;
+    margin: 10px 0px;
+    width: 30%;
+    border:solid 1px #8f0c63;
+    border-radius: 10px;
+    background-color: white;
+    height: 60px;
+    text-align: center;
+}
+
+.details {
+    border:solid 1px #8f0c63; 
+    border-radius: 10px; 
+    margin: 10px 10px 10px 0px;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.totalPrice {
+    flex: 1;
+}
+
+.payment {
+    border:solid 1px #8f0c63; 
+    border-radius: 10px;  
+    margin: 10px 10px 10px 0px;
+}
+
+.payOpt {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.address {
+    border:solid 1px #8f0c63; 
+    border-radius: 10px;
+    margin: 10px 10px 10px 0px;
+}
+
+.addressIn {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
