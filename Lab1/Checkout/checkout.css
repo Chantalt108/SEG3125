@@ -45,16 +45,19 @@
     border:solid 1px #8f0c63; 
     border-radius: 10px; 
     margin: 10px 10px 10px 0px;
+    display: flex;
 }
 
 .total {
     display: flex;
     flex-direction: row;
     padding: 10px;
+    width: 100%;
+    justify-content: flex-end;
 }
 
-.totalPrice {
-    flex: 1;
+.totalPriceText {
+    margin-right: 20px;
 }
 
 .payment {
@@ -77,6 +80,6 @@
 
 .addressIn {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 10px;
 }

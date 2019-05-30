@@ -28,4 +28,3 @@ cuisines.forEach(cuisine => {
 
     var wrapper = document.getElementById('cuisines');
     wrapper.appendChild(b);
-});
