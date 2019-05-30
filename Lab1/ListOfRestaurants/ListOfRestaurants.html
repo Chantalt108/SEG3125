@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "ListOfRestaurants.css" />
+        <script src="./ListOfRestaurants.js"></script>
     </head>
 <body>
     <div class="header">
@@ -9,7 +10,7 @@
     </div>
     <h2 class="section-header">List of Restaurants</div>
     <div class="restaurants">
-        <div class="restaurant">
+        <div class="restaurant" id="rest1" onclick="navMenu(this.id)">
             <div class="rest-name">Restaurant 1</div>
             <div class="rest-rating">2 stars</div>
             <div class="rest-address">1234 Street</div>
@@ -18,7 +19,7 @@
             <div class="rest-hours">24h</div>
             <img class="rest-image" src="1200px-Fast_Food_Restaurant_in_Malinska_im_Hafen.jpg">
         </div>
-        <div class="restaurant">
+        <div class="restaurant" id="rest2" onclick="navMenu(this.id)">
                 <div class="rest-name">Restaurant 2</div>
                 <div class="rest-rating">5 stars</div>
                 <div class="rest-address">321 Street</div>
