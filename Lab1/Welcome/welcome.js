@@ -1,4 +1,3 @@
-
 let cities = ['Ottawa', 'Toronto', 'Kingston', 'Montreal'];
 let mealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Snacks', 'Late Night', 'Dessert'];
 let cuisines = ['Indian', 'Chinese', 'Italian', 'Burgers', 'Vegan', 'Thai'];
@@ -29,5 +28,3 @@ cuisines.forEach(cuisine => {
 
     var wrapper = document.getElementById('cuisines');
     wrapper.appendChild(b);
-});
-

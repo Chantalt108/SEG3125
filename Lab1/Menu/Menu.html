@@ -2,45 +2,22 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "Menu.css" />
+        <meta charset="utf-8"/>
     </head>
-<body>
-    <div class="header">
-        <h1 class="logo">EAT FOOD</h1>
-    </div>
-    <h2 class="rest-name">The Restaurant that Only Sells Pizza</h2>
-    <h2 class="section-header">Menu</h2>
-    <div class="subsections">
-        <div class="item">
-            <div class="item-name">Food 1</div>
-            <div class="item-price">$5</div>
-            <img class="item-image" src="stuffed crust pizza.jpg">
-            <button class="add-to-cart" type="button">Add to Cart</button>
+    <body>
+        <div class="menu">
+            <div class="header">
+            <h1 class="logo">EAT FOOD</h1>
+            </div>
+            <h2 id="rest-name"></h2>
+            <h2 class="section-header">Menu</h2>
+            <div id="menu-sections" class="subsections"></div>
         </div>
-        <div class="item">
-            <div class="item-name">Food 2</div>
-            <div class="item-price">$10</div>
-            <img class="item-image" src="stuffed crust pizza.jpg">
-            <button class="add-to-cart" type="button">Add to Cart</button>
-            
+        <div class="cart">
+            <div id="cart-header"></div>
+            <div id="cart-section" class="cart-items"></div>
+            <button class="checkout" id="checkout-btn" type="button">Checkout</button> 
         </div>
-        <div class="item">
-            <div class="item-name">Food 3</div>
-            <div class="item-price">$15</div>
-            <img class="item-image" src="stuffed crust pizza.jpg">
-            <button class="add-to-cart" type="button">Add to Cart</button>
-        </div>
-        <div class="item">
-            <div class="item-name">Food 4</div>
-            <div class="item-price">$7</div>
-            <img class="item-image" src="stuffed crust pizza.jpg">
-            <button class="add-to-cart" type="button">Add to Cart</button>     
-        </div>
-        <div class="item">
-            <div class="item-name">Food 5</div>
-            <div class="item-price">$12</div>
-            <img class="item-image" src="stuffed crust pizza.jpg">
-            <button class="add-to-cart" type="button">Add to Cart</button>
-        </div>
-    </div>
-</body>
+    </body>
+    <script type="text/javascript" src="./menu.js"></script>
 </html>
