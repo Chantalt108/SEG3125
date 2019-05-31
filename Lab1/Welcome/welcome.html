@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script src="./welcome.js"></script>
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "../main.css" />
@@ -7,14 +6,7 @@
     <body>
         <div class="header">
             <h1 class="logo">EAT FOOD</h1>
-            <div class="city-select">
-            <select>
-                <option value="Ottawa">Ottawa</option>
-                <option value="Toronto">Toronto</option>
-                <option value="Kingston">Kingston</option>
-                <option value="Montreal">Montreal</option>
-            </select> 
-            </div>
+            <select id="city-select"></select> 
         </div>
         <div class="search">
             <input class="search-bar" type="text" placeholder="Search">
@@ -22,21 +14,10 @@
         </div>
         <div class="meal-type">
             <h2 class="section-header">Meal type</h2>
-            <div class="subsections">
-                <button class="subsection" type="button">Breakfast</button>
-                <button class="subsection" type="button">Lunch</button>
-                <button class="subsection" type="button">Dinner</button>
-                <button class="subsection" type="button">Snacks</button>
-                <button class="subsection" type="button">Late Night</button>
-            </div>
+            <div id = "mealTypes" class="subsections"></div>
             <h2 class="section-header">Cuisine</h2>
-            <div class="subsections">
-                <button class="subsection" type="button">Indian</button>
-                <button class="subsection" type="button">Chinese</button>
-                <button class="subsection" type="button">Italian</button>
-                <button class="subsection" type="button">Burgers</button>
-                <button class="subsection" type="button">Vegan</button>
-            </div>
+            <div id = "cuisines" class="subsections"></div>
         </div>
     </body>
+    <script type="text/javascript" src="./welcome.js"></script>
 </html>
