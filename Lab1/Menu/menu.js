@@ -1,9 +1,16 @@
+var restId = window.location.hash.substr(1);
 var restName = "The Restaurant That Only Sells Pizza";
 var restNameRef = document.getElementById("rest-name");
 restNameRef.innerHTML = restName;
 
 var cartNameRef = document.getElementById("cart-header");
 cartNameRef.innerHTML = "Your order from " + restName + ":";
+
+function loadMenu() {
+    if(restId == "rest1"){
+        //Load corresponding menu items based on restId
+    }
+}
 
 var items = [
     {
@@ -62,47 +69,28 @@ document.getElementById('checkout-btn').onclick = function () {
 };
 
 function addToCart(item) {
-    var itemSectionId = item.name + "_inCart";
-    var itemID = itemSectionId+"_section";
-    var delBtnID = itemSectionId + "_delBtn";
+    var itemId = item.name + "_inCart";
 
-    var cartItemSection = document.createElement('div');
-    cartItemSection.setAttribute('class', 'cart-item-section');
-    cartItemSection.setAttribute('id', itemSectionId);
-
-    var cartSection = document.getElementById('cart-section');
-    cartSection.appendChild(cartItemSection);
-
-    //create delete button
-    var deleteBtn = document.createElement('button');
-    deleteBtn.setAttribute('class', 'delete-btn');
-    deleteBtn.setAttribute('id', delBtnID);
-    deleteBtn.innerHTML = "X";
-
-    //create section for name and price 
     var cartItem = document.createElement('div');
     cartItem.setAttribute('class', 'cart-item');
-    cartItem.setAttribute('id', itemID);
+    cartItem.setAttribute('id', itemId);
 
-    var cartItemSectionWrapper = document.getElementById(itemSectionId);
-    cartItemSectionWrapper.appendChild(deleteBtn);
-    cartItemSectionWrapper.appendChild(cartItem);
+    var cartSection = document.getElementById('cart-section');
+    cartSection.appendChild(cartItem);
 
-    //create variables for name and price
     var cartItemName = document.createElement('div');
     cartItemName.innerHTML = item.name;
 
     var cartItemPrice = document.createElement('div');
     cartItemPrice.innerHTML = item.price;
 
-    var cartItemWrapper = document.getElementById(itemID);
+    var cartItemWrapper = document.getElementById(itemId);
     cartItemWrapper.appendChild(cartItemName);
     cartItemWrapper.appendChild(cartItemPrice);
 
     document.getElementById(delBtnID).addEventListener("click", () => 
         deleteFromCart(cartSection, cartItemSection)
     );
-
 }
 
 function deleteFromCart(cartSection, cartItemSection) {
