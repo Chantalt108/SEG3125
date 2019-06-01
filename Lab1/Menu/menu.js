@@ -62,22 +62,49 @@ document.getElementById('checkout-btn').onclick = function () {
 };
 
 function addToCart(item) {
-    var itemId = item.name + "_inCart";
+    var itemSectionId = item.name + "_inCart";
+    var itemID = itemSectionId+"_section";
+    var delBtnID = itemSectionId + "_delBtn";
 
-    var cartItem = document.createElement('div');
-    cartItem.setAttribute('class', 'cart-item');
-    cartItem.setAttribute('id', itemId);
+    var cartItemSection = document.createElement('div');
+    cartItemSection.setAttribute('class', 'cart-item-section');
+    cartItemSection.setAttribute('id', itemSectionId);
 
     var cartSection = document.getElementById('cart-section');
-    cartSection.appendChild(cartItem);
+    cartSection.appendChild(cartItemSection);
 
+    //create delete button
+    var deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('class', 'delete-btn');
+    deleteBtn.setAttribute('id', delBtnID);
+    deleteBtn.innerHTML = "X";
+
+    //create section for name and price 
+    var cartItem = document.createElement('div');
+    cartItem.setAttribute('class', 'cart-item');
+    cartItem.setAttribute('id', itemID);
+
+    var cartItemSectionWrapper = document.getElementById(itemSectionId);
+    cartItemSectionWrapper.appendChild(deleteBtn);
+    cartItemSectionWrapper.appendChild(cartItem);
+
+    //create variables for name and price
     var cartItemName = document.createElement('div');
     cartItemName.innerHTML = item.name;
 
     var cartItemPrice = document.createElement('div');
     cartItemPrice.innerHTML = item.price;
 
-    var cartItemWrapper = document.getElementById(itemId);
+    var cartItemWrapper = document.getElementById(itemID);
     cartItemWrapper.appendChild(cartItemName);
     cartItemWrapper.appendChild(cartItemPrice);
+
+    document.getElementById(delBtnID).addEventListener("click", () => 
+        deleteFromCart(cartSection, cartItemSection)
+    );
+
+}
+
+function deleteFromCart(cartSection, cartItemSection) {
+    cartSection.removeChild(cartItemSection);
 }

@@ -78,10 +78,19 @@
     margin: 30px 0px;
 }
 
-.cart-items {
+.cart-item-section {
     display: flex;
-    flex-direction: column;
-    margin: 5px;
+    flex-direction: row;
+}
+
+.delete-btn {
+    border: none;
+    background: none;
+    color: #8f0c63;
+}
+
+.delete-btn:hover {
+    color: #ffffff;
 }
 
 .cart-item {
@@ -90,10 +99,9 @@
     flex-direction: row;
     color: #9b9999;
     justify-content: space-between;
-    padding: 5px;
-    margin: 5px;
     border: solid 2px #fff;
     border-radius: 6px;
+    flex: 9;
 }
 
 button.checkout {
