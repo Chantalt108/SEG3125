@@ -1,6 +1,13 @@
+var restId = window.location.hash.substr(1);
 var restName = "The Restaurant That Only Sells Pizza";
 var restNameRef = document.getElementById("rest-name");
 restNameRef.innerHTML = restName;
+
+function loadMenu() {
+    if(restId == "rest1"){
+        //Load corresponding menu items based on restId
+    }
+}
 
 var cartNameRef = document.getElementById("cart-header");
 cartNameRef.innerHTML = "Your order from " + restName + ":";
