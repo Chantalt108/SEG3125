@@ -104,6 +104,16 @@
     flex: 9;
 }
 
+.subtotal-section {
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    justify-content: space-between;
+    color: #ffffff;
+    position: fixed;
+    bottom: 80px;
+}
+
 button.checkout {
     background-color: #8f0c63;
     border:solid 2px #8f0c63;
