@@ -15,15 +15,20 @@ cartNameRef.innerHTML = "Your order from " + restName + ":";
 var items = [
     {
         name: 'Pizza 1',
-        price: '$5',
+        price: 5.50,
         image: null
     },
     {
         name: 'Pizza 2',
-        price: '$5',
+        price: 4.75,
         image: null
     }
 ]
+
+var subtotal = 0;
+var subtotalString;
+var itemCounter = -1;
+var subtotalWrapper = document.getElementById('subtotal');
 
 items.forEach(item => {
     var div = document.createElement('div');
@@ -39,7 +44,7 @@ items.forEach(item => {
 
     var price = document.createElement('div');
     name.setAttribute('class', 'item-price');
-    price.innerHTML = item.price;
+    price.innerHTML = "$" + item.price;
 
     var image = document.createElement('img');
     image.setAttribute('src', 'stuffed crust pizza.jpg');
@@ -69,7 +74,12 @@ document.getElementById('checkout-btn').onclick = function () {
 };
 
 function addToCart(item) {
-    var itemSectionId = item.name + "_inCart";
+    itemCounter++;
+
+    subtotal += item.price;
+    subtotalString = "$" + subtotal.toFixed(2);
+
+    var itemSectionId = item.name + itemCounter + "_inCart";
     var itemID = itemSectionId+"_section";
     var delBtnID = itemSectionId + "_delBtn";
 
@@ -100,18 +110,24 @@ function addToCart(item) {
     cartItemName.innerHTML = item.name;
 
     var cartItemPrice = document.createElement('div');
-    cartItemPrice.innerHTML = item.price;
+    cartItemPrice.innerHTML = "$" + item.price.toFixed(2);
 
     var cartItemWrapper = document.getElementById(itemID);
     cartItemWrapper.appendChild(cartItemName);
     cartItemWrapper.appendChild(cartItemPrice);
 
+    subtotalWrapper.innerHTML = subtotalString;
+
     document.getElementById(delBtnID).addEventListener("click", () => 
-        deleteFromCart(cartSection, cartItemSection)
+        deleteFromCart(item, cartSection, cartItemSection)
     );
 
 }
 
-function deleteFromCart(cartSection, cartItemSection) {
+function deleteFromCart(item, cartSection, cartItemSection) {
     cartSection.removeChild(cartItemSection);
+    subtotal -= item.price;
+    console.log(subtotal);
+    subtotalString = "$" + subtotal.toFixed(2);
+    subtotalWrapper.innerHTML = subtotalString;
 }
