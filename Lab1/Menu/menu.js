@@ -3,27 +3,32 @@ var restName = "The Restaurant That Only Sells Pizza";
 var restNameRef = document.getElementById("rest-name");
 restNameRef.innerHTML = restName;
 
-var cartNameRef = document.getElementById("cart-header");
-cartNameRef.innerHTML = "Your order from " + restName + ":";
-
 function loadMenu() {
     if(restId == "rest1"){
         //Load corresponding menu items based on restId
     }
 }
 
+var cartNameRef = document.getElementById("cart-header");
+cartNameRef.innerHTML = "Your order from " + restName + ":";
+
 var items = [
     {
         name: 'Pizza 1',
-        price: '$5',
+        price: 5.50,
         image: null
     },
     {
         name: 'Pizza 2',
-        price: '$5',
+        price: 4.75,
         image: null
     }
 ]
+
+var subtotal = 0;
+var subtotalString;
+var itemCounter = -1;
+var subtotalWrapper = document.getElementById('subtotal');
 
 items.forEach(item => {
     var div = document.createElement('div');
@@ -39,7 +44,7 @@ items.forEach(item => {
 
     var price = document.createElement('div');
     name.setAttribute('class', 'item-price');
-    price.innerHTML = item.price;
+    price.innerHTML = "$" + item.price;
 
     var image = document.createElement('img');
     image.setAttribute('src', 'stuffed crust pizza.jpg');
@@ -69,22 +74,58 @@ document.getElementById('checkout-btn').onclick = function () {
 };
 
 function addToCart(item) {
-    var itemId = item.name + "_inCart";
+    itemCounter++;
 
-    var cartItem = document.createElement('div');
-    cartItem.setAttribute('class', 'cart-item');
-    cartItem.setAttribute('id', itemId);
+    subtotal += item.price;
+    subtotalString = "$" + subtotal.toFixed(2);
+
+    var itemSectionId = item.name + itemCounter + "_inCart";
+    var itemID = itemSectionId+"_section";
+    var delBtnID = itemSectionId + "_delBtn";
+
+    var cartItemSection = document.createElement('div');
+    cartItemSection.setAttribute('class', 'cart-item-section');
+    cartItemSection.setAttribute('id', itemSectionId);
 
     var cartSection = document.getElementById('cart-section');
-    cartSection.appendChild(cartItem);
+    cartSection.appendChild(cartItemSection);
 
+    //create delete button
+    var deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('class', 'delete-btn');
+    deleteBtn.setAttribute('id', delBtnID);
+    deleteBtn.innerHTML = "X";
+
+    //create section for name and price 
+    var cartItem = document.createElement('div');
+    cartItem.setAttribute('class', 'cart-item');
+    cartItem.setAttribute('id', itemID);
+
+    var cartItemSectionWrapper = document.getElementById(itemSectionId);
+    cartItemSectionWrapper.appendChild(deleteBtn);
+    cartItemSectionWrapper.appendChild(cartItem);
+
+    //create variables for name and price
     var cartItemName = document.createElement('div');
     cartItemName.innerHTML = item.name;
 
     var cartItemPrice = document.createElement('div');
-    cartItemPrice.innerHTML = item.price;
+    cartItemPrice.innerHTML = "$" + item.price.toFixed(2);
 
-    var cartItemWrapper = document.getElementById(itemId);
+    var cartItemWrapper = document.getElementById(itemID);
     cartItemWrapper.appendChild(cartItemName);
     cartItemWrapper.appendChild(cartItemPrice);
+
+    subtotalWrapper.innerHTML = subtotalString;
+
+    document.getElementById(delBtnID).addEventListener("click", () => 
+        deleteFromCart(item, cartSection, cartItemSection)
+    );
+}
+
+function deleteFromCart(item, cartSection, cartItemSection) {
+    cartSection.removeChild(cartItemSection);
+    subtotal -= item.price;
+    subtotalString = "$" + subtotal.toFixed(2);
+    subtotalWrapper.innerHTML = subtotalString;
 }
