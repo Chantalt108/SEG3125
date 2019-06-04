@@ -7,6 +7,7 @@ var restNameRef;
 var cartNameRef;
 var subtotalWrapper;
 var test = "test";
+var cart = [];
 
 var items = [
     {
@@ -85,7 +86,8 @@ function addItems() {
 function addToCart(item) {
     itemCounter++;
     cart.push(item);
-    console.log(cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(localStorage.getItem('cart'));
 
     subtotal += item.price;
     subtotalString = "$" + subtotal.toFixed(2);
@@ -141,4 +143,7 @@ function deleteFromCart(item, cartSection, cartItemSection) {
     console.log(subtotal);
     subtotalString = "$" + subtotal.toFixed(2);
     subtotalWrapper.innerHTML = subtotalString;
+    
+    cart.splice(cart.indexOf(item), 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
