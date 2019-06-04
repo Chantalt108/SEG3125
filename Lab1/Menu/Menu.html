@@ -3,11 +3,12 @@
     <head>
         <link rel = "stylesheet" type = "text/css" href = "Menu.css" />
         <meta charset="utf-8"/>
+        <script type="text/javascript" src="../Cart/cart.js"></script>
     </head>
-    <body>
+    <body onload="getElements()">
         <div class="menu">
             <div class="header">
-            <h1 class="logo">EAT FOOD</h1>
+                <h1 class="logo">EAT FOOD</h1>
             </div>
             <h2 id="rest-name"></h2>
             <h2 class="section-header">Menu</h2>
@@ -22,6 +23,6 @@
             </div>
             <button class="checkout" id="checkout-btn" type="button">Checkout</button> 
         </div>
+        <script type="text/javascript" src="./menu.js"></script>
     </body>
-    <script type="text/javascript" src="./menu.js"></script>
 </html>

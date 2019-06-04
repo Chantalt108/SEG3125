@@ -6,7 +6,7 @@
     font-weight: normal;
 }
 
-.summary {
+#summary {
     border:solid 1px #8f0c63; 
     border-radius: 10px;
 }

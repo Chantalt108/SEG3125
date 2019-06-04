@@ -2,24 +2,17 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "cart.css" />
+        <meta charset="utf-8"/>
+        <script type="text/javascript" src="../Menu/menu.js"></script>
     </head>
     <body>
         <div class="header">
             <h1 class="logo">EAT FOOD</h1>
         </div>
-        <h2 class="cart-header">Your order from Restaurant 1:</h2>
-        <div class="summary">
-            <div class="cart-item">    
-                <div class="item">Pizza</div>
-                <div class="price">$5</div>
-                <div class="quantity">Quantity: 1</div>
-            </div>
-            <div class="cart-item">
-                <div class="item">Burger</div>
-                <div class="price">$10</div>
-                <div class="quantity">Quantity: 2</div>
-            </div>
-        </div>
+        <h2 class="cart-header">Your order from Restaurant 1:
+        </h2>
+        <div id="summary"></div>
         <button class="checkout" type="button">Check out</button>
     </body>
+    <script type="text/javascript" src="cart.js"></script>
 </html>
