@@ -2,25 +2,19 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "cart.css" />
+        <meta charset="utf-8"/>
     </head>
-    <body>
+    <body onload="loadCart()">
         <div class="header">
             <h1 class="logo">EAT FOOD</h1>
         </div>
         <h2 class="cart-header">Your order from Restaurant 1:</h2>
-        <div class="summary">
-            <div class="cart-item">    
-                <div class="item">Pizza</div>
-                <div class="price" id="price1">$5</div>
-                <div class="quantity">Quantity: 1</div>
-            </div>
-            <div class="cart-item">
-                <div class="item">Burger</div>
-                <div class="price" id="price2">$10</div>
-                <div class="quantity">Quantity: 2</div>
-            </div>
+        <div id="summary" class="summary"></div>
+        <div id="subtotal-section" class="subtotal">
+            <div>Subtotal: </div>
+            <div id="subtotal"></div>
         </div>
         <button class="checkout" type="button" onclick="navToCheckout()">Check out</button>
-        <script type="text/javascript" src="./cart.js"></script>
     </body>
+    <script type="text/javascript" src="cart.js"></script>
 </html>
