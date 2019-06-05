@@ -39,3 +39,21 @@
     height: 60px;
     text-align: center;
 }
+
+.checkout:hover {
+    border: solid 1px #b983a7;
+    background-color:  #b983a7;
+    color: white;
+}
+
+.subtotal {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    color: #9b9999;
+    padding: 15px;
+}
+
+#subtotal {
+    margin-left: 10px;
+}
