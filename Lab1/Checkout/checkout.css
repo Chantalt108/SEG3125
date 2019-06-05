@@ -72,6 +72,18 @@
     padding: 10px;
 }
 
+.paymentDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.payByCash {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    display: none;
+}
+
 .address {
     border:solid 1px #8f0c63; 
     border-radius: 10px;
