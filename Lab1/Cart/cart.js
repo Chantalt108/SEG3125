@@ -1,3 +1,5 @@
+var total = 0;
+var message = "Press OK to continue to checkout or Cancel to go back to the Menu.";
 var cart = (JSON.parse(localStorage.getItem('cart')));
 var cartWrapper = document.getElementById('summary');
 var subtotal = localStorage.getItem('subtotal');
@@ -6,6 +8,16 @@ var stWrapper = document.getElementById('subtotal-section');
 stWrapper.setAttribute('class', 'subtotal');
 
 var st = document.getElementById('subtotal');
+
+function navToCheckout(){
+    
+    if (window.confirm("Press OK to continue to checkout or Cancel to go back to the Menu.")) { 
+        window.location.href = "../Checkout/Checkout.html";      
+      }
+    else{
+        window.location.href = "../Menu/Menu.html";   
+    }
+}
 
 function loadCart() {
     console.log(cart);
@@ -28,7 +40,3 @@ function loadCart() {
 
     st.innerHTML = "$" + subtotal;
 }
-
-
-
-
