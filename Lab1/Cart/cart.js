@@ -1,7 +1,13 @@
 var cart = (JSON.parse(localStorage.getItem('cart')));
 var cartWrapper = document.getElementById('summary');
+var subtotal = localStorage.getItem('subtotal');
 
-function fillCart() {
+var stWrapper = document.getElementById('subtotal-section');
+stWrapper.setAttribute('class', 'subtotal');
+
+var st = document.getElementById('subtotal');
+
+function loadCart() {
     console.log(cart);
 
     cart.forEach(item => {
@@ -19,6 +25,8 @@ function fillCart() {
 
         cartWrapper.appendChild(itemSection);
     }); 
+
+    st.innerHTML = "$" + subtotal;
 }
 
 

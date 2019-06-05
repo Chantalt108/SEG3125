@@ -79,6 +79,8 @@ function addItems() {
     });
 
     document.getElementById('checkout-btn').onclick = function () {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('subtotal', subtotal.toString());
         location.href = '../Cart/cart.html';
     };
 }
@@ -86,8 +88,6 @@ function addItems() {
 function addToCart(item) {
     itemCounter++;
     cart.push(item);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(localStorage.getItem('cart'));
 
     subtotal += item.price;
     subtotalString = "$" + subtotal.toFixed(2);
@@ -140,10 +140,8 @@ function addToCart(item) {
 function deleteFromCart(item, cartSection, cartItemSection) {
     cartSection.removeChild(cartItemSection);
     subtotal -= item.price;
-    console.log(subtotal);
     subtotalString = "$" + subtotal.toFixed(2);
     subtotalWrapper.innerHTML = subtotalString;
     
     cart.splice(cart.indexOf(item), 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
 }
