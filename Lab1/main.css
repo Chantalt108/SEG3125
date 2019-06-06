@@ -76,7 +76,7 @@ a:link a:visited a:active {
     padding-right: 5px;
 }
 
-#search-button {
+.button {
     background-color: #8f0c63;
     margin-left: 15px;
     border:solid 2px #8f0c63;
@@ -86,7 +86,7 @@ a:link a:visited a:active {
     height: 30px;
 }
 
-#search-button:hover {
+.button:hover {
     border: solid 2px #b983a7;
     background-color:  #b983a7;
     color: white;
