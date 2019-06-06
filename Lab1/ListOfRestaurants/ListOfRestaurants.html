@@ -2,12 +2,16 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "ListOfRestaurants.css" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="./ListOfRestaurants.js"></script>
     </head>
 <body>
-    <div class="header">
-        <h1 class="logo">EAT FOOD</h1>
-    </div>
+    <div id="nav-placeholder"></div>
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("../NavBar/nav.html");
+        });
+    </script>
     <h2 class="section-header">List of Restaurants</div>
     <div class="restaurants">
         <div class="restaurant" id="rest1" onclick="navMenu(this.id)">

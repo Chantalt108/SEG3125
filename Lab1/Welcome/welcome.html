@@ -2,16 +2,15 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "../main.css" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <body>
-        <div id="header">
-            <h1 class="logo">EAT FOOD</h1>
-            <select id="city-select"></select> 
-        </div>
-        <div class="search">
-            <input class="search-bar" type="text" placeholder="Search">
-            <button class="button" type="button">Go</button> 
-        </div>
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function(){
+                $("#nav-placeholder").load("../NavBar/nav.html");
+            });
+        </script>
         <div class="meal-type">
             <h2 class="section-header">Meal type</h2>
             <div id = "mealTypes" class="subsections"></div>

@@ -1,12 +1,15 @@
 @import "../main.css"; 
 
+.main-page {
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
 .menu {
-    position: fixed;
-    z-index: 0;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    margin-right: 300px;
+    flex: 3;
 }
 
 #rest-name {
@@ -55,19 +58,15 @@
 }
 
 .cart {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
     background-color: #b983a7;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding-top: 20px;
+    padding: 20px;
     align-items: center;
+    background-size: cover;
+    justify-content: space-between;
+    height: 550px;
 }
 
 #cart-header {
@@ -93,6 +92,14 @@
     color: #ffffff;
 }
 
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 250px;
+    flex: 1;
+}
+
 .cart-item {
     background-color: #ffffff;
     display: flex;
@@ -104,14 +111,17 @@
     flex: 9;
 }
 
+.st-co {
+    justify-self: baseline;
+}
+
 .subtotal-section {
     display: flex;
     flex-direction: row;
     width: 250px;
     justify-content: space-between;
     color: #ffffff;
-    position: fixed;
-    bottom: 80px;
+    padding-bottom: 10px;
 }
 
 button.checkout {
@@ -122,8 +132,6 @@ button.checkout {
     color: #ffffff;
     height: 40px;
     width: 250px;
-    position: fixed;
-    bottom: 20px;
     font-size: 15px;
 }
 
