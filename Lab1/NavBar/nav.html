@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel = "stylesheet" type = "text/css" href = "nav.css" />
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <meta charset="utf-8"/>
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./nav.js"></script>
     </head>
     <body>
         <div class="header">
             <h1 class="logo">EAT FOOD</h1>
             <div class="search">
-                    <input class="search-bar" type="text" placeholder="Search for restaurants or cuisines...">
-                    <button class="button" type="button">Go</button> 
+                <input id="search-bar" type="text" placeholder="Search for restaurants or cuisines...">
+                <button class="button" type="button" onclick="search()">Go</button> 
             </div>
             <select id="city-select"></select> 
             <script>
@@ -23,5 +27,6 @@
                 <a class="nav-button" href="../Welcome/welcome.html">Home</a>
             </div>
         </div>
+        <script type="text/javascript" src="./nav.js"></script>
     </body>
 </html>
