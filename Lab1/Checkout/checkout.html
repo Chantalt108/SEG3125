@@ -28,12 +28,35 @@
             </div>
         </div>
         <div class="payment">
-            <div class="payOpt">Payment Option: <br>
-                <select>
+            <div class="payOpt">Payment Option: 
+                <select id='paymentType' onchange="detectOpt()">
                     <option value="Debit">Debit</option>
                     <option value="Credit">Credit</osption>
                     <option value="Cash">Cash on Delivery</option>
                 </select> 
+            </div>
+            <div class="payByCash" id='payByCash'>Cash will be payed on delivery. </div>
+            <div class="paymentDetails" id="paymentDetails" >
+                <div> 
+                    Card Number: 
+                    <input class="cardNumber" type="text" placeholder="Card number" id="cardNumber">
+                </div>
+                <div>
+                    Expiration date: 
+                    <input class="expDate" type="text" placeholder="Expiration date" id="expDate">
+                </div>
+                <div>
+                    CVV: 
+                    <input class="cvv" type="text" placeholder="CVV" id='cvv'>
+                </div>
+                <div>
+                    Country: 
+                    <input class="country" type="text" placeholder="Country" id='country'>
+                </div>
+                <div>
+                    Zip code: 
+                    <input class="zipCode" type="text" placeholder="Zip Code" id='zipCode'>
+                </div>
             </div>
         </div>
         <div class="address">
@@ -44,5 +67,6 @@
                 <input type="text" placeholder="Postal Code">
         </div>
         <button class="checkout" type="button">Confirm Order</button>
+        <script type="text/javascript" src="./checkout.js"></script>
     </body>
 </html>

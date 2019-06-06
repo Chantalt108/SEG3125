@@ -87,4 +87,19 @@ function addToCart(item) {
     var cartItemWrapper = document.getElementById(itemId);
     cartItemWrapper.appendChild(cartItemName);
     cartItemWrapper.appendChild(cartItemPrice);
+
+    subtotalWrapper.innerHTML = subtotalString;
+
+    document.getElementById(delBtnID).addEventListener("click", () => 
+        deleteFromCart(item, cartSection, cartItemSection)
+    );
+}
+
+function deleteFromCart(item, cartSection, cartItemSection) {
+    cartSection.removeChild(cartItemSection);
+    subtotal -= item.price;
+    subtotalString = "$" + subtotal.toFixed(2);
+    subtotalWrapper.innerHTML = subtotalString;
+    
+    cart.splice(cart.indexOf(item), 1);
 }
