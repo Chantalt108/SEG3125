@@ -65,7 +65,7 @@ a:link a:visited a:active {
     align-items: center;
 }
 
-#search-bar {
+.search-bar {
     flex: 11;
     height: 15px;
     border:solid 1.5px #8f0c63;
