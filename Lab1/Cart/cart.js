@@ -38,5 +38,5 @@ function loadCart() {
         cartWrapper.appendChild(itemSection);
     }); 
 
-    st.innerHTML = "$" + subtotal;
+    st.innerHTML = subtotal;
 }

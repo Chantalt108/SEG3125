@@ -1,17 +1,9 @@
-let cities = ['Ottawa', 'Toronto', 'Kingston', 'Montreal'];
 let mealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Snacks', 'Late Night', 'Dessert'];
 let cuisines = ['Indian', 'Chinese', 'Italian', 'Burgers', 'Vegan', 'Thai'];
 
 var isClicked = false;
 var mTypeId = "";
 var cTypeId = "";
-
-var citySelect = document.getElementById('city-select').options;
-cities.forEach(city =>
-    citySelect.add(
-        new Option(city)
-    )
-);
 
 mealTypes.forEach(mealType => {
     var b = document.createElement('button');

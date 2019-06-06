@@ -3,11 +3,15 @@
     <head>
         <link rel = "stylesheet" type = "text/css" href = "cart.css" />
         <meta charset="utf-8"/>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <body onload="loadCart()">
-        <div class="header">
-            <h1 class="logo">EAT FOOD</h1>
-        </div>
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function(){
+                $("#nav-placeholder").load("../NavBar/nav.html");
+            });
+        </script>
         <h2 class="cart-header">Your order from Restaurant 1:</h2>
         <div id="summary" class="summary"></div>
         <div id="subtotal-section" class="subtotal">

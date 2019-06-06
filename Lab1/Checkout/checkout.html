@@ -2,11 +2,15 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "checkout.css" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <body>
-        <div class="header">
-            <h1 class="logo">EAT FOOD</h1>
-        </div>
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function(){
+                $("#nav-placeholder").load("../NavBar/nav.html");
+            });
+        </script>
         <h2 class="cart-header">Checkout</h2>
         <div class="summary">
             <div class="cart-item">    

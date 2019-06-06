@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "nav.css" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="logo">EAT FOOD</h1>
+            <div class="search">
+                    <input class="search-bar" type="text" placeholder="Search for restaurants or cuisines...">
+                    <button class="button" type="button">Go</button> 
+            </div>
+            <select id="city-select"></select> 
+            <script>
+                let cities = ['Ottawa', 'Toronto', 'Kingston', 'Montreal'];
+                var citySelect = document.getElementById('city-select').options;
+                cities.forEach(city => citySelect.add(new Option(city)));
+            </script>
+        </div>
+        <div class="navbar">
+            <div class="nav-button">
+                <a class="nav-button" href="../Welcome/welcome.html">Home</a>
+            </div>
+        </div>
+    </body>
+</html>
