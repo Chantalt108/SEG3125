@@ -2,32 +2,39 @@
 <html>
     <head>
         <link rel = "stylesheet" type = "text/css" href = "nav.css" />
+        <meta charset="utf-8"/>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
     <body>
         <div class="header">
-            <h1 class="logo">EAT FOOD</h1>
-            <div class="search">
-                    <input class="search-bar" type="text" placeholder="Search for restaurants or cuisines..." name="search-bar">
-                    <button id="search-button" type="button">Go</button> 
-                    <script>
-                        var input = $("search-bar").val();
-                        $("#search-button").click(function() {
-                            console.log(input);
-                        });
-                    </script>
-            </div>
-            <select id="city-select"></select> 
+            <div id="logo" href="#">EAT FOOD</div>
+            <input id="search-bar" type="text" placeholder="Search for restaurants or cuisines..." name="search-bar">
+            <button id="search-button" type="button">Go</button> 
             <script>
-                let cities = ['Ottawa', 'Toronto', 'Kingston', 'Montreal'];
-                var citySelect = document.getElementById('city-select').options;
-                cities.forEach(city => citySelect.add(new Option(city)));
+                $("#search-button").click(function(){
+                    var userInput = ($("#search-bar").val());
+                    localStorage.setItem('search', userInput);
+                    window.location.href = "../ListOfRestaurants/ListOfRestaurants.html";
+                });
             </script>
         </div>
-        <div class="navbar">
-            <div class="nav-button">
-                <a class="nav-button" href="../Welcome/welcome.html">Home</a>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8f0c63">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../Welcome/welcome.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../ListOfRestaurants/ListOfRestaurants.html">All Restaurants</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../Cart/cart.html">Cart</a>
+                </li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </body>
 </html>

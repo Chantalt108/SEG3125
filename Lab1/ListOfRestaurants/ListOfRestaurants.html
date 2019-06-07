@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel = "stylesheet" type = "text/css" href = "ListOfRestaurants.css" />
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="./ListOfRestaurants.js"></script>
     </head>
-<body>
-    <div id="nav-placeholder"></div>
-    <script>
-        $(function(){
-            $("#nav-placeholder").load("../NavBar/nav.html");
-        });
-    </script>
-    <h2 class="section-header">List of Restaurants</div>
-    <div class="restaurants">
-        <div class="restaurant" id="rest1" onclick="navMenu(this.id)">
-            <div class="rest-name">Restaurant 1</div>
-            <div class="rest-rating">2 stars</div>
-            <div class="rest-address">1234 Street</div>
-            <div class="rest-cuisine">Food</div>
-            <div class="rest-pricerange">$10-$15</div>
-            <div class="rest-hours">24h</div>
-            <img class="rest-image" src="1200px-Fast_Food_Restaurant_in_Malinska_im_Hafen.jpg">
-        </div>
-        <div class="restaurant" id="rest2" onclick="navMenu(this.id)">
-                <div class="rest-name">Restaurant 2</div>
-                <div class="rest-rating">5 stars</div>
-                <div class="rest-address">321 Street</div>
-                <div class="rest-cuisine">Also Food</div>
-                <div class="rest-pricerange">$10-$25</div>
-                <div class="rest-hours">9am-9pm</div>
-                <img class="rest-image" src="180405-fast-food-chains-in-n-out.jpg">
-        </div>
-    </div>
-</body>
+    <body onload="loadStorage()">
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function(){
+                $("#nav-placeholder").load("../NavBar/nav.html");
+            });
+        </script>
+        <div id="title">All Restaurants</div>
+        <div id="restaurants"></div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

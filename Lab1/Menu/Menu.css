@@ -67,7 +67,7 @@
 
 .item-image {
     flex: 2;
-    max-width: 150px;
+    max-width: 100px;
     margin-right: 10px;
 }
 
@@ -123,6 +123,7 @@
     border: solid 2px #fff;
     border-radius: 6px;
     flex: 9;
+    margin-bottom: 5px;
 }
 
 .st-co {

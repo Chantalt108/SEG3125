@@ -6,7 +6,6 @@ var itemCounter = -1;
 var restNameRef;
 var cartNameRef;
 var subtotalWrapper;
-var test = "test";
 var cart = [];
 
 var items = [
@@ -69,9 +68,10 @@ function addItems() {
         var quantity = document.createElement('div');
         quantity.setAttribute('class', 'quantity');
 
-        var qId = items.indexOf(item) + '-quantity'
+        item.qId = items.indexOf(item) + '-quantity'
+        
         var quantNum = document.createElement('div');
-        quantNum.setAttribute("id", qId);
+        quantNum.setAttribute("id", item.qId);
         quantNum.innerHTML = item.quantity;
         
         var incQuant = document.createElement('button');
@@ -88,12 +88,12 @@ function addItems() {
 
         incQuant.onclick = function () {
             item.quantity ++;
-            document.getElementById(qId).innerHTML = item.quantity;
+            document.getElementById(item.qId).innerHTML = item.quantity;
         };
 
         decQuant.onclick = function () {
             item.quantity --;
-            document.getElementById(qId).innerHTML = item.quantity;
+            document.getElementById(item.qId).innerHTML = item.quantity;
         };
 
         var btnId = items.indexOf(item) + '-button';
@@ -181,16 +181,19 @@ function addToCart(item) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    subtotal += item.price;
+    subtotal += item.price * item.quantity;
     subtotalString = "$" + subtotal.toFixed(2);
-    localStorage.setItem('subtotal', subtotalString);
+    localStorage.setItem('subtotal', subtotal);
 
     subtotalWrapper.innerHTML = subtotalString;
+
+    item.quantity = 1;
+    document.getElementById(item.qId).innerHTML = item.quantity;
 }
 
 function deleteFromCart(item, cartSection, cartItemSection) {
     cartSection.removeChild(cartItemSection);
-    subtotal -= item.price;
+    subtotal -= item.price * item.quantity;
     subtotalString = "$" + subtotal.toFixed(2);
     subtotalWrapper.innerHTML = subtotalString;
     

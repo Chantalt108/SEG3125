@@ -1,6 +1,12 @@
 @import "../main.css"; 
 
-.restaurants {
+#title {
+    color: #9b9999;
+    font-size: 25px;
+    margin: 15px;
+}
+
+#restaurants {
     display: flex;
     flex-direction: column;
     margin: 10px 0px;
@@ -42,7 +48,6 @@
 .rest-hours{
     flex:1;
 }
-
 .rest-image {
     flex:1;
     max-width: 150px;

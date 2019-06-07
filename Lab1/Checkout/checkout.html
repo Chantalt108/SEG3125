@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel = "stylesheet" type = "text/css" href = "checkout.css" />
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
@@ -12,23 +13,11 @@
             });
         </script>
         <h2 class="cart-header">Checkout</h2>
-        <div class="summary">
-            <div class="cart-item">    
-                <div class="item">Pizza</div>
-                <div class="price">$5</div>
-                <div class="quantity">Quantity: 1</div>
-            </div>
-            
-            <div class="cart-item">
-                <div class="item">Burger</div>
-                <div class="price">$10</div>
-                <div class="quantity">Quantity: 2</div>
-            </div>
-        </div>
+        <div id="summary"></div>
         <div class="details">
             <div class="total">
                 <div class="totalPriceText">Total Price:</div><br>
-                <div class="totalPrice">$25</div>
+                <div id="totalPrice"></div>
             </div>
         </div>
         <div class="payment">
@@ -73,4 +62,6 @@
         <button class="checkout" type="button">Confirm Order</button>
         <script type="text/javascript" src="./checkout.js"></script>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
