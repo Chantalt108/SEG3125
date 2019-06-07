@@ -8,8 +8,14 @@
         <div class="header">
             <h1 class="logo">EAT FOOD</h1>
             <div class="search">
-                    <input class="search-bar" type="text" placeholder="Search for restaurants or cuisines...">
-                    <button class="button" type="button">Go</button> 
+                    <input class="search-bar" type="text" placeholder="Search for restaurants or cuisines..." name="search-bar">
+                    <button id="search-button" type="button">Go</button> 
+                    <script>
+                        var input = $("search-bar").val();
+                        $("#search-button").click(function() {
+                            console.log(input);
+                        });
+                    </script>
             </div>
             <select id="city-select"></select> 
             <script>
