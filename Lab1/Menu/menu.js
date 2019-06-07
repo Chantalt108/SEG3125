@@ -6,20 +6,19 @@ var itemCounter = -1;
 var restNameRef;
 var cartNameRef;
 var subtotalWrapper;
-var test = "test";
 var cart = [];
 
 var items = [
     {
         name: 'Pizza 1',
         price: 5.50,
-        image: null,
+        image: 'stuffed crust pizza.jpg',
         quantity: 1
     },
     {
         name: 'Pizza 2',
         price: 4.75,
-        image: null,
+        image: 'stuffed crust pizza.jpg',
         quantity: 1
     }
 ]
@@ -45,21 +44,57 @@ function addItems() {
         var itemDiv = document.createElement('div');
         itemDiv.setAttribute('class', 'item');
         itemDiv.setAttribute('id', item.name);
-
+        
         var divWrapper = document.getElementById('menu-sections');
         divWrapper.appendChild(itemDiv);
+
+        var image = document.createElement('img');
+        image.setAttribute('src', item.image);
+        image.setAttribute('class', 'item-image');
 
         var name = document.createElement('div');
         name.setAttribute('class', 'item-name');
         name.innerHTML = item.name;
 
         var price = document.createElement('div');
-        name.setAttribute('class', 'item-price');
-        price.innerHTML = "$" + item.price;
+        price.setAttribute('class', 'item-price');
+        price.innerHTML = "$" + item.price.toFixed(2);
 
-        var image = document.createElement('img');
-        image.setAttribute('src', 'stuffed crust pizza.jpg');
-        image.setAttribute('class', 'item-image');
+        var nameAndPrice = document.createElement('div');
+        nameAndPrice.setAttribute('class', 'name-and-price');
+        nameAndPrice.appendChild(name);
+        nameAndPrice.appendChild(price);
+
+        var quantity = document.createElement('div');
+        quantity.setAttribute('class', 'quantity');
+
+        item.qId = items.indexOf(item) + '-quantity'
+        
+        var quantNum = document.createElement('div');
+        quantNum.setAttribute("id", item.qId);
+        quantNum.innerHTML = item.quantity;
+        
+        var incQuant = document.createElement('button');
+        incQuant.setAttribute("id", items.indexOf(item) + '-inc');
+        incQuant.innerHTML = "+";
+
+        var decQuant = document.createElement('button');
+        decQuant.setAttribute("id", items.indexOf(item) + '-dec');
+        decQuant.innerHTML = "-";
+
+        quantity.appendChild(decQuant);
+        quantity.appendChild(quantNum);
+        quantity.appendChild(incQuant);
+
+        incQuant.onclick = function () {
+            item.quantity ++;
+            document.getElementById(item.qId).innerHTML = item.quantity;
+        };
+
+        decQuant.onclick = function () {
+            item.quantity --;
+            document.getElementById(item.qId).innerHTML = item.quantity;
+        };
 
         var btnId = items.indexOf(item) + '-button';
 
@@ -70,9 +105,9 @@ function addItems() {
         cartButton.innerHTML = "Add to Cart";
 
         var itemWrapper = document.getElementById(item.name);
-        itemWrapper.appendChild(name);
-        itemWrapper.appendChild(price);
         itemWrapper.appendChild(image);
+        itemWrapper.appendChild(nameAndPrice);
+        itemWrapper.appendChild(quantity);
         itemWrapper.appendChild(cartButton);
 
         document.getElementById(btnId).addEventListener("click", () => {
@@ -83,6 +118,7 @@ function addItems() {
     document.getElementById('checkout-btn').onclick = function () {
         location.href = '../Cart/cart.html';
     };
+
 }
 
 function addToCart(item) {
@@ -92,11 +128,11 @@ function addToCart(item) {
     var itemID = itemSectionId+"_section";
     var delBtnID = itemSectionId + "_delBtn";
 
+    //check if item already exists in card
     if(cart.indexOf(item) > -1){
         var itemInCart = document.getElementById(cart[cart.indexOf(item)].id);
         var quantity = itemInCart.childNodes[2];
-        quantity.innerHTML = parseInt(quantity.innerHTML, 10) + 1;
-        
+        quantity.innerHTML = parseInt(quantity.innerHTML, 10) + item.quantity;   
     } else {
         cart.push(item);
         cart[cart.indexOf(item)].id = itemID;
@@ -145,16 +181,19 @@ function addToCart(item) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    subtotal += item.price;
+    subtotal += item.price * item.quantity;
     subtotalString = "$" + subtotal.toFixed(2);
-    localStorage.setItem('subtotal', subtotalString);
+    localStorage.setItem('subtotal', subtotal);
 
     subtotalWrapper.innerHTML = subtotalString;
+
+    item.quantity = 1;
+    document.getElementById(item.qId).innerHTML = item.quantity;
 }
 
 function deleteFromCart(item, cartSection, cartItemSection) {
     cartSection.removeChild(cartItemSection);
-    subtotal -= item.price;
+    subtotal -= item.price * item.quantity;
     subtotalString = "$" + subtotal.toFixed(2);
     subtotalWrapper.innerHTML = subtotalString;
     

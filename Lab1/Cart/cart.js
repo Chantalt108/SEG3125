@@ -8,9 +8,10 @@ var stWrapper = document.getElementById('subtotal-section');
 stWrapper.setAttribute('class', 'subtotal');
 
 var st = document.getElementById('subtotal');
+var tax = document.getElementById('tax');
+var total = document.getElementById('total');
 
 function navToCheckout(){
-    
     if (window.confirm("Press OK to continue to checkout or Cancel to go back to the Menu.")) { 
         window.location.href = "../Checkout/Checkout.html";      
       }
@@ -20,8 +21,6 @@ function navToCheckout(){
 }
 
 function loadCart() {
-    console.log(cart);
-
     cart.forEach(item => {
         var itemSection = document.createElement('div');
         itemSection.setAttribute('class', 'cart-item');
@@ -32,11 +31,22 @@ function loadCart() {
         var itemPrice = document.createElement('div');
         itemPrice.innerHTML = "$" + item.price.toFixed(2);
 
+        var itemQuan = document.createElement('div');
+        itemQuan.innerHTML = "Quantity: " + item.quantity;
+
         itemSection.appendChild(itemName);
         itemSection.appendChild(itemPrice);
+        itemSection.appendChild(itemQuan);
 
         cartWrapper.appendChild(itemSection);
     }); 
 
-    st.innerHTML = subtotal;
+    var taxAmount = (parseInt(subtotal, 10) * 0.15).toFixed(2);
+    var totalAmount = (parseInt(subtotal, 10) * 1.15).toFixed(2);
+    subtotal = (parseInt(subtotal, 10)).toFixed(2);
+
+    st.innerHTML = "$" + subtotal;
+    tax.innerHTML = "$" + taxAmount;
+    total.innerHTML = "$" + totalAmount;
+
 }

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel = "stylesheet" type = "text/css" href = "cart.css" />
         <meta charset="utf-8"/>
-        <script
-			  src="https://code.jquery.com/jquery-3.4.1.js"
-			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			  crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
-    <body onload="loadCart()">
+        <body onload="loadCart()">
         <div id="nav-placeholder"></div>
         <script>
             $(function(){
@@ -21,7 +19,17 @@
             <div>Subtotal: </div>
             <div id="subtotal"></div>
         </div>
+        <div id="tax-section" class="subtotal">
+            <div>Taxes: </div>
+            <div id="tax"></div>
+        </div>
+        <div id="total-section" class="subtotal">
+            <div>Total: </div>
+            <div id="total"></div>
+        </div>
         <button class="checkout" type="button" onclick="navToCheckout()">Check out</button>
     </body>
     <script type="text/javascript" src="cart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>

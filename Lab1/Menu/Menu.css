@@ -26,16 +26,28 @@
     border:solid 2px #8f0c63; 
     border-radius: 10px;
     padding: 10px;  
-    margin: 10px 10px 10px 0px;
-    width: 45%;
+    margin: 10px 15px 10px 10px;
+    width: 100%;
+}
+
+.name-and-price {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .item-name {
-    flex:1.5;
+    flex:1;
 }
 
 .item-price {
     flex:1;
+}
+
+.quantity {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
 
 .add-to-cart {
@@ -54,7 +66,9 @@
 }
 
 .item-image {
-    max-width: 150px;
+    flex: 2;
+    max-width: 100px;
+    margin-right: 10px;
 }
 
 .cart {
@@ -109,6 +123,7 @@
     border: solid 2px #fff;
     border-radius: 6px;
     flex: 9;
+    margin-bottom: 5px;
 }
 
 .st-co {
