@@ -11,7 +11,7 @@ export class ListOfRestaurantsScreen extends React.Component {
 
     state = {
         searchResults: [],
-        searchDone: false
+        text: ''
     };
 
     static navigationOptions = ({navigation}) => {
@@ -83,8 +83,6 @@ export class ListOfRestaurantsScreen extends React.Component {
     
     render() {
         const {navigate} = this.props.navigation;
-        
-        const resultsTitle = <Text style={styles.text}>Results for {this.state.search}:</Text>
 
         const allRests = restaurants.map((restaurant) => 
             <TouchableHighlight onPress={() => navigate("Menu", {id: restaurant.id})}>
@@ -102,7 +100,17 @@ export class ListOfRestaurantsScreen extends React.Component {
         return (
             <ScrollView contentContainerStyle={styles.wrapper} style={styles.container}>
                 <Text style={styles.text}>Search for restaurants or cuisines: </Text>
-                <View>{this.buttons()}</View>
+                <TextInput
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    onChangeText={(text) => this.setState({text})}
+                    value={this.state.text}
+                />
+                <Button
+                    color="#ccc"
+                    style={styles.button} 
+                    onPress={() => {this.performSearch(this.state.text)}} 
+                    title={"Search!"}/>
+                <View>{this.state.text.length === 0 ? this.buttons() : null}</View>
                 <View>{this.state.searchResults.length === 0 ? allRests: this.displayResults()}</View>
             </ScrollView>
         );
