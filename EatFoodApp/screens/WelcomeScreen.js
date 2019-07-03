@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Picker } from 'react-native';
 import { registerRootComponent } from 'expo';
+import { CityPicker } from '../components/CityPicker';
 
 export default class WelcomeScreen extends React.Component{
     constructor(props){
@@ -15,52 +16,51 @@ export default class WelcomeScreen extends React.Component{
         title: 'Welcome',
     };
 
+    
+
     render(){
         const {navigate} = this.props.navigation;
 
         var styles = StyleSheet.create({
             container: {
-                display: 'flex',
                 flex: 1,
-                margin: 50,
-                flexDirection: 'column'
+                padding: 50,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                backgroundColor: '#8f0c63'
             },
             button: {
                 width: 300,
-                backgroundColor: '#8f0c63',
                 marginBottom: 15,
                 padding: 15,
-                borderRadius: 5
+                borderRadius: 5,
             },
             logo: {
-                color: '#8f0c63',
+                color: '#ffffff',
                 fontSize: 40,
                 fontWeight: 'bold',
                 fontFamily: 'Roboto',
                 alignSelf: 'center'
             },
-            citySelect: {
-                width: 300,
-                height: 50,
+            text: {
+                color: '#ffffff',
+                fontSize: 20,
                 alignSelf: 'center',
-                borderColor: '#8f0c63'
+                marginTop: 30
             }
+
         });
 
         return (
             <View style={styles.container}>
                 <Text style={styles.logo}>EAT FOOD</Text>
-                <Picker
-                    selectedValue={this.state.language}
-                    style={styles.citySelect}
-                    onValueChange={(lang) => this.setState({language: lang})}>
-                    <Picker.Item label="City" value="city" />
-                    <Picker.Item label="Ottawa" value="ottawa" />
-                    <Picker.Item label="Toronto" value="toronto" />
-                    <Picker.Item label="Kingston" value="kingston" />
-                    <Picker.Item label="Montreal" value="montreal" />
-                </Picker>
-                <Button style={styles.button} onPress={() => navigate('ListOfRestaurants')} title="List Of Restaurants" />
+                <Text style={styles.text}>Select your city: </Text>
+                <CityPicker></CityPicker>
+                <Button id="seeRestsButton" 
+                    color="#b983a7"
+                    style={styles.button} 
+                    onPress={() => navigate('ListOfRestaurants')} 
+                    title={"Go!"}/>
             </View>
         ); 
     }
