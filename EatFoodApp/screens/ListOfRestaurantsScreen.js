@@ -1,41 +1,75 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button, Picker } from 'react-native';
+import { StyleSheet, Text, View, Button, Picker, TextInput, TouchableHighlight } from 'react-native';
 import { RestaurantIcon } from '../components/RestaurantIcon';
 import { SearchBar, Icon } from 'react-native-elements';
 
 export class ListOfRestaurantsScreen extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
     state = {
         search: '',
         searchResults: []
     };
+
+    static navigationOptions = ({navigation}) => {
+        return {
+            headerTitleStyle :{color:'#fff'},
+            headerStyle: {backgroundColor:"#b983a7"},
+            headerRight: <Button color='#8f0c63' title='Cart' size={25} onPress={() => navigation.navigate('Cart')} />
+        };
+    };
+
+    componentDidMount() {
+        this.props.navigation.setParams({ handleSave: this._saveDetails });
+    }
+
     
     updateSearch = search => {
         this.setState({ search });
-        this.performSearch(search);
     };
 
-    performSearch(key) {
-        console.log("searching for " + key);
+    performSearch = ()=> {
+        console.log("searching for " + this.state.search);
         restaurants.map((restaurant) =>{
-            if(restaurant.type.includes(key.toLowerCase())){
-                console.log("found one!");
-                this.state.searchResults.push(restaurant.name);
+            if(restaurant.type.includes(this.state.search.toLowerCase())){
+                this.state.searchResults.push(restaurant.id);
             }
         });
-
-        this.state.searchResults.map((result) => console.log(result));
+        return null;
     }
     
     render() {
-        const { search } = this.state;
+        const {navigate} = this.props.navigation;
+        
+        const resultsTitle = <Text style={styles.text}>Results for {this.state.search}:</Text>
 
-        const results = <Text style={styles.text}>Results for {this.state.search}:</Text>
-        const allRests = restaurants.map((restaurant) => { return (<Text>{restaurant.name}</Text>);})
+        const allRests = restaurants.map((restaurant) => 
+            <TouchableHighlight onPress={() => navigate("Menu", {id: restaurant.id})}>
+                <RestaurantIcon 
+                    id={restaurant.id}
+                    name={restaurant.name}
+                    rating={restaurant.rating}
+                    address={restaurant.address}
+                    priceRange={restaurant.priceRange}
+                    hours={restaurant.hours}
+                    >
+                    </RestaurantIcon>
+            </TouchableHighlight>
+        );
+
+        const results = this.state.searchResults.map((result) => {
+            <TouchableHighlight onPress={() => console.log("pressed")}>
+                <RestaurantIcon id={result}></RestaurantIcon>
+            </TouchableHighlight>
+        });
+
 
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>Search for restaurants or cuisines: </Text>
-                <SearchBar
+                {/* <SearchBar
                     inputContainerStyle={styles.inputContainer}
                     containerStyle={styles.searchContainer}
                     placeholder="Type Here..."
@@ -43,14 +77,30 @@ export class ListOfRestaurantsScreen extends React.Component {
                     onChangeText={this.updateSearch}
                     onSearchButtonPress={this.performSearch(search)}
                     value={search}
+                /> */}
+                <TextInput
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    onChangeText={(search) => {this.setState({search: search})}}
+                    value={this.state.search}
                 />
                 <Button
                     color="#b983a7"
                     style={styles.button} 
-                    onPress={this.performSearch("Indian")} 
+                    onPress={() => {
+                        this.setState({search: "Indian"});
+                        this.performSearch();
+                    }} 
                     title={"Indian"}/>
-                {this.state.search.length > 0 ? results :  allRests}
-                <Text>{this.state.searchResults[0]}</Text>
+                <Button
+                    color="#b983a7"
+                    style={styles.button} 
+                    onPress={() => {
+                        this.setState({search: "Late Night"});
+                        this.performSearch();
+                    }} 
+                    title={"Late Night"}/>
+                <View>{this.state.search.length > 0 ? resultsTitle :  allRests}</View>
+                <View>{results}</View>
             </View>
         );
     }
@@ -135,5 +185,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         borderColor: 'white'
+    },
+    tHigh: {
+        backgroundColor: 'red'
     }
 });
