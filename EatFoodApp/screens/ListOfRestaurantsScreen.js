@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button, Picker, TextInput, TouchableHighlight } from 'react-native';
 import { RestaurantIcon } from '../components/RestaurantIcon';
 import { SearchBar, Icon } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export class ListOfRestaurantsScreen extends React.Component {
     constructor(props){
@@ -9,8 +10,8 @@ export class ListOfRestaurantsScreen extends React.Component {
     }
 
     state = {
-        search: '',
-        searchResults: []
+        searchResults: [],
+        searchDone: false
     };
 
     static navigationOptions = ({navigation}) => {
@@ -26,18 +27,58 @@ export class ListOfRestaurantsScreen extends React.Component {
     }
 
     
-    updateSearch = search => {
-        this.setState({ search });
+    updateSearch(value){
+        console.log(value);
     };
 
-    performSearch = ()=> {
-        console.log("searching for " + this.state.search);
-        restaurants.map((restaurant) =>{
-            if(restaurant.type.includes(this.state.search.toLowerCase())){
-                this.state.searchResults.push(restaurant.id);
+    performSearch(searchValue) {
+        searchValue = searchValue.toLowerCase();
+        console.log("searching for " + searchValue);
+        this.setState({searchResults: []});
+        let results = [];
+
+        restaurants.map((rest) => {
+            if(rest.type.includes(searchValue)){
+                console.log(rest.name + " has food for type " + searchValue);
+                results.push(rest);
             }
         });
-        return null;
+
+        console.log(results);
+        this.setState({searchResults: results});
+    }
+
+    displayResults(){
+        let results = this.state.searchResults;
+
+        let displayedRes = results.map((result) => {
+            return(<View>
+                <RestaurantIcon 
+                    id={result.id}
+                    name={result.name}
+                    rating={result.rating}
+                    address={result.address}
+                    priceRange={result.priceRange}
+                    hours={result.hours}
+                ></RestaurantIcon>
+            </View>);
+        });
+        return displayedRes;
+    }
+
+    buttons(){
+        const foodTypes = ["Indian", "Lunch", "Dinner", "Late Night", "Chinese", 
+            "Burgers", "Dessert", "Italian", "Pizza", "Vegan" ];
+        
+        let typeButtons = foodTypes.map((type) => {
+            return <Button
+                color="#b983a7"
+                style={styles.button} 
+                onPress={() => {this.performSearch(type)}} 
+                title={type}/>
+        })
+
+        return typeButtons;
     }
     
     render() {
@@ -54,54 +95,16 @@ export class ListOfRestaurantsScreen extends React.Component {
                     address={restaurant.address}
                     priceRange={restaurant.priceRange}
                     hours={restaurant.hours}
-                    >
-                    </RestaurantIcon>
+                ></RestaurantIcon>
             </TouchableHighlight>
         );
 
-        const results = this.state.searchResults.map((result) => {
-            <TouchableHighlight onPress={() => console.log("pressed")}>
-                <RestaurantIcon id={result}></RestaurantIcon>
-            </TouchableHighlight>
-        });
-
-
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.wrapper} style={styles.container}>
                 <Text style={styles.text}>Search for restaurants or cuisines: </Text>
-                {/* <SearchBar
-                    inputContainerStyle={styles.inputContainer}
-                    containerStyle={styles.searchContainer}
-                    placeholder="Type Here..."
-                    searchIcon={{size: 24}}
-                    onChangeText={this.updateSearch}
-                    onSearchButtonPress={this.performSearch(search)}
-                    value={search}
-                /> */}
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(search) => {this.setState({search: search})}}
-                    value={this.state.search}
-                />
-                <Button
-                    color="#b983a7"
-                    style={styles.button} 
-                    onPress={() => {
-                        this.setState({search: "Indian"});
-                        this.performSearch();
-                    }} 
-                    title={"Indian"}/>
-                <Button
-                    color="#b983a7"
-                    style={styles.button} 
-                    onPress={() => {
-                        this.setState({search: "Late Night"});
-                        this.performSearch();
-                    }} 
-                    title={"Late Night"}/>
-                <View>{this.state.search.length > 0 ? resultsTitle :  allRests}</View>
-                <View>{results}</View>
-            </View>
+                <View>{this.buttons()}</View>
+                <View>{this.state.searchResults.length === 0 ? allRests: this.displayResults()}</View>
+            </ScrollView>
         );
     }
 }
@@ -153,9 +156,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 30,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        height: 700
+        flexDirection: 'column'
     },
     button: {
         width: 300,

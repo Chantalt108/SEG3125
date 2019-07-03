@@ -57,9 +57,7 @@ export class MenuScreen extends React.Component{
 
         currTotal = currTotal + price;
 
-        this.setState({total: currTotal});
-
-        console.log(this.state.cart);        
+        this.setState({total: currTotal});       
     }
 
     removeItem(item, price){
