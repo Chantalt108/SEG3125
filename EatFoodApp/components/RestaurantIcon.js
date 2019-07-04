@@ -29,7 +29,7 @@ export class RestaurantIcon extends React.Component {
             <View style={styles.iconContainer}>
                 {this.getImage()}
                 <View style={styles.restInfo}>
-                    <Text style={{fontWeight: 'bold', fontSize: 20, fontColor: '#8f0c63'}}>{this.props.name}</Text>
+                    <Text style={{fontWeight: 'bold', fontSize: 20, color: '#8f0c63'}}>{this.props.name}</Text>
                     <Text>{this.props.rating}</Text>
                     <Text>{this.props.address}</Text>
                     <Text>{this.props.priceRange}</Text>

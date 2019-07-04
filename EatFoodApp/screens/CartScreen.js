@@ -30,9 +30,11 @@ export class CartScreen extends React.Component {
     render(){
         const { navigation } = this.props;
         const cart = navigation.getParam('cart', 'NO-CART');
+        const cartSummary = cart;
         const subtotal = navigation.getParam('total', 'NO-TOTAL');
         const tax = 0.13 * subtotal;
         const total = subtotal + tax;
+        const totalSum = total;
 
         return <View style={styles.container}>
                     {cart === 'NO-CART'? <Text>No items to show yet!</Text> : 
@@ -41,7 +43,7 @@ export class CartScreen extends React.Component {
                         <Text style={{fontWeight: 'bold', alignSelf: 'flex-end',}}>Subtotal: ${subtotal.toFixed(2)}</Text>
                         <Text style={{fontWeight: 'bold', alignSelf: 'flex-end',}}>Tax: ${tax.toFixed(2)}</Text>
                         <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
-                        <TouchableOpacity style={styles.checkout}>
+                        <TouchableOpacity style={styles.checkout} onPress={() => navigation.navigate('Checkout', {summary: cartSummary, cTotal: totalSum})}>
                             <Text style={{color: 'white', alignSelf: 'center'}}>Proceed To Checkout</Text>
                         </TouchableOpacity>
                     </View>

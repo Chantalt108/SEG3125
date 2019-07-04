@@ -5,6 +5,8 @@ import WelcomeScreen from  './screens/WelcomeScreen';
 import { MenuScreen } from  './screens/MenuScreen';
 import { ListOfRestaurantsScreen } from './screens/ListOfRestaurantsScreen';
 import {CartScreen} from './screens/CartScreen';
+import {CheckoutScreen} from './screens/CheckoutScreen';
+import {ConfirmationScreen} from './screens/ConfirmationScreen';
 
 
 const AppNavigator = createStackNavigator({
@@ -33,14 +35,20 @@ const AppNavigator = createStackNavigator({
     navigationOptions: {
       headerTitle: 'Cart'
     }
-
   },
   Checkout: {
     screen: CheckoutScreen,
     navigationOptions: {
       headerTitle: 'Checkout'
     }
-
+  },
+  Confirmation: {
+    screen: ConfirmationScreen,
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+      header: null
+    }
   }
 });
 
