@@ -8,6 +8,7 @@ import {CartScreen} from './screens/CartScreen';
 import {CheckoutScreen} from './screens/CheckoutScreen';
 import {ConfirmationScreen} from './screens/ConfirmationScreen';
 
+console.disableYellowBox = true;
 
 const AppNavigator = createStackNavigator({
   Welcome: {

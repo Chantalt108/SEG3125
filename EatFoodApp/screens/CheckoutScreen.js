@@ -12,7 +12,11 @@ export class CheckoutScreen extends React.Component {
       expDate: null,
       cvv: null,
       country: null,
-      postCode: null
+      postCode: null,
+      addressLine1: null,
+      addressLine2: null,
+      city: null,
+      postCode2: null
     };
   }
 
@@ -85,7 +89,7 @@ export class CheckoutScreen extends React.Component {
         {this.validateCardNum()}
         <TextInput placeholder="Expiration Date (MMYY)" 
           value={this.state.expDate}
-          maxLength={5}
+          maxLength={4}
           onChangeText={(expDate) => this.setState({expDate})}
         ></TextInput>
         {this.validateExpDate()}
@@ -112,7 +116,7 @@ export class CheckoutScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const cart = navigation.getParam('summary', 'NO-CART');
-    const total = navigation.getParam('total', 'NO-TOTAL');
+    const total = navigation.getParam('cTotal', 'NO-TOTAL');
 
     const { navigate } = this.props.navigation;
 
@@ -126,7 +130,7 @@ export class CheckoutScreen extends React.Component {
       <View style={styles.container}>
         <Text style={{fontWeight: 'bold', fontSize: 18, color: '#8f0c63'}}>Summary: </Text>
         <View>{this.getCartSummary(cart)}</View>
-        <Text>Total: {total}</Text>
+        <Text>Total: ${total.toFixed(2)}</Text>
         <Picker
           id="PaymentMethod"
           selectedValue={this.state.payOpt}
@@ -138,6 +142,26 @@ export class CheckoutScreen extends React.Component {
         </Picker>
         <View style={styles.container}>
           {this.state.paymentType === 'cash' ? <Text>If paying by cash, payment will be done upon delivery.</Text> : this.displayCardFields()}
+        </View>
+        <View>
+        <Text>Fill out address details below: </Text>
+          <TextInput placeholder="Address Line 1" 
+            value={this.state.addressLine1}
+            onChangeText={(addressLine1) => this.setState({addressLine1})}>
+          </TextInput>
+          <TextInput placeholder="Address Line 2" 
+            value={this.state.addressLine2}
+            onChangeText={(addressLine2) => this.setState({addressLine2})}>
+          </TextInput>
+          <TextInput placeholder="City" 
+            value={this.state.city}
+            onChangeText={(city) => this.setState({city})}>
+          </TextInput>
+          <TextInput placeholder="Postal Code (no spaces)" 
+            maxLength={6}
+            value={this.state.postCode2}
+            onChangeText={(postCode2) => this.setState({postCode2})}>
+          </TextInput>
         </View>
         <TouchableOpacity onPress={() => navigate('Confirmation')} style={{backgroundColor: "#b983a7", padding: 5 }}>
             <Text style={{color: 'white', alignSelf: 'center'}}>Confirm order</Text>

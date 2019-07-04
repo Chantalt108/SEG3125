@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
 import { MenuItem } from '../components/MenuItem';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
 export class MenuScreen extends React.Component{
 
     state = {
         cart:[],
         total: 0,
+        totalITems: 0
     };
 
     static navigationOptions = ({navigation}) => {
@@ -41,6 +41,7 @@ export class MenuScreen extends React.Component{
     addItem(item, price){
         let currTotal = this.state.total;
         let currCart = this.state.cart;
+        let currNumItems = this.state.totalITems;
         let inCartIndex = currCart.findIndex(cartItem => cartItem.itemName === item);
 
         if(inCartIndex > -1){
@@ -56,13 +57,15 @@ export class MenuScreen extends React.Component{
         }
 
         currTotal = currTotal + price;
-
+        currNumItems ++;
+        this.setState({totalITems: currNumItems});
         this.setState({total: currTotal});       
     }
 
     removeItem(item, price){
         let currTotal = this.state.total;
         let currCart = this.state.cart;
+        let currNumItems = this.state.totalITems;
         let inCartIndex = currCart.findIndex(cartItem => cartItem.itemName === item);
 
         if(inCartIndex > -1){
@@ -73,6 +76,8 @@ export class MenuScreen extends React.Component{
             }
 
             currTotal = currTotal - price;
+            currNumItems --;
+            this.setState({totalITems: currNumItems});
             this.setState({total: currTotal});
         }        
     }
@@ -80,14 +85,13 @@ export class MenuScreen extends React.Component{
     getQuantity(item){
         var cart = this.state.cart;
         var quantity;
+        let inCartIndex = cart.findIndex(cartItem => cartItem.itemName === item);
 
-        cart.map((cartItem) => {
-            if(cartItem.itemName === item){
-                quantity = cartItem.itemQuantity;
-            } else {
-                quantity = 0;
-            }
-        });
+        if(inCartIndex > -1){
+            quantity = cart[inCartIndex].itemQuantity; 
+        } else {
+            quantity = 0;
+        }
 
         return quantity;
     }
@@ -105,7 +109,7 @@ export class MenuScreen extends React.Component{
                                 <TouchableOpacity style={styles.quantityButton} onPress={()=>this.addItem(item, rest.prices[i])}>
                                     <Text style={styles.quantityText}>+</Text>
                                 </TouchableOpacity>
-                                <Text style={styles.quantityNum}>{this.state.cart.length === 0 ? '0' : this.getQuantity(item)}</Text>
+                                <Text style={styles.quantityNum}>{this.getQuantity(item)}</Text>
                                 <TouchableOpacity style={styles.quantityButton} onPress={()=>this.removeItem(item, rest.prices[i])}>
                                     <Text style={styles.quantityText}>-</Text>
                                 </TouchableOpacity>
@@ -132,7 +136,7 @@ export class MenuScreen extends React.Component{
                     <TouchableOpacity style={styles.cartSummary}
                         onPress={() => navigation.navigate("Cart", {cart: this.state.cart, total: this.state.total})}>
                         <Text style={styles.cartItem}>CART</Text>
-                        <Text style={styles.cartItem}>Items: {this.state.cart.length}</Text>
+                        <Text style={styles.cartItem}>Items: {this.state.totalITems}</Text>
                         <Text style={styles.cartItem}>Subtotal: ${this.state.total.toFixed(2)}</Text>
                     </TouchableOpacity>
                 </View>
