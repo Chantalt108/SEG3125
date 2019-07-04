@@ -10,42 +10,53 @@ export class MenuItem extends React.Component {
             case 'rest1':
                 switch(this.props.name){
                     case 'Indian food 1':
-                        imgSrc = <Image style={styles.image} source={require('./pizzarest.jpg')}/>;
+                        imgSrc = <Image style={styles.itemImage} source={require('./pizzarest.jpg')}/>;
                         break;
                     case 'Indian food 2':
-                        imgSrc = <Image style={styles.image} source={require('./180405-fast-food-chains-in-n-out.jpg')}/>;
+                        imgSrc = <Image style={styles.itemImage} source={require('./180405-fast-food-chains-in-n-out.jpg')}/>;
                         break;
                 }
                 break;
             case 'rest2':
-                imgSrc = <Image style={styles.image} source={require('./pizzarest.jpg')}/>;
+                imgSrc = <Image style={styles.itemImage} source={require('./pizzarest.jpg')}/>;
                 break;
             case 'rest3':
-                imgSrc = <Image style={styles.image} source={require('./pizzarest.jpg')}/>;
+                imgSrc = <Image style={styles.itemImage} source={require('./pizzarest.jpg')}/>;
                 break;
             case 'rest4':
-                imgSrc = <Image style={styles.image} source={require('./pizzarest.jpg')}/>;
+                imgSrc = <Image style={styles.itemImage} source={require('./pizzarest.jpg')}/>;
                 break;
         }
         return imgSrc;
     }
 
     render(){
-        return  <View styles={styles.container}>
-                    <Text>{this.props.name}</Text>
-                    <Text>{this.props.price}</Text>
-                    <View>{this.getImage()}</View>
+        return <View style={styles.menuItem}>
+                    {this.getImage()}
+                    <View style={styles.itemDescrip}>
+                        <Text>{this.props.name}</Text>
+                        <Text>${this.props.price.toFixed(2)}</Text>  
+                    </View>
                 </View>
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
+    menuItem: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 110,
+        alignItems: 'center',
+        paddingRight: 10
     },
-    image: {
-        marginTop: 10,
-        width: 50,
-        height: 50
+    itemImage: {
+        flex: 1,
+        height: 110,
+        borderTopLeftRadius: 5,
+        borderBottomLeftRadius: 5,
+    },
+    itemDescrip: {
+        flex: 1,
+        marginLeft: 5
     }
 });

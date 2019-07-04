@@ -26,13 +26,15 @@ export class RestaurantIcon extends React.Component {
     render(){
         
         return(
-            <View>
+            <View style={styles.iconContainer}>
                 {this.getImage()}
-                <Text>{this.props.name}</Text>
-                <Text>{this.props.rating}</Text>
-                <Text>{this.props.address}</Text>
-                <Text>{this.props.priceRange}</Text>
-                <Text>{this.props.hours}</Text>
+                <View style={styles.restInfo}>
+                    <Text style={{fontWeight: 'bold', fontSize: 20, fontColor: '#8f0c63'}}>{this.props.name}</Text>
+                    <Text>{this.props.rating}</Text>
+                    <Text>{this.props.address}</Text>
+                    <Text>{this.props.priceRange}</Text>
+                    <Text>{this.props.hours}</Text>
+                </View>
             </View>
         );
     }
@@ -40,9 +42,23 @@ export class RestaurantIcon extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        marginTop: 10,
-        width: 50,
-        height: 50
+        flex: 1,
+        height: 130,
+        borderTopLeftRadius: 5,
+        borderBottomLeftRadius: 5,
+    }, 
+    iconContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        borderColor: '#8f0c63', 
+        borderWidth: 2,
+        borderRadius: 5,
+        marginTop: 7,
+        height: 130
+    },
+    restInfo: {
+        flex: 1,
+        marginLeft: 5
     }
 });
 

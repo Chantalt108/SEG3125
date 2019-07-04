@@ -10,14 +10,16 @@ import {CartScreen} from './screens/CartScreen';
 const AppNavigator = createStackNavigator({
   Welcome: {
     screen: WelcomeScreen,
+    headerMode: 'none',
     navigationOptions: {
-      headerTitle: 'Welcome',
+      headerVisible: false,
+      header: null
     }
   },
   ListOfRestaurants: {
     screen: ListOfRestaurantsScreen,
     navigationOptions: {
-      headerTitle: 'List of Restaurants',
+      headerTitle: 'Restaurants',
     }
   },
   Menu: {

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button, Picker, TextInput, TouchableHighlight } from 'react-native';
 import { RestaurantIcon } from '../components/RestaurantIcon';
 import { SearchBar, Icon } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+
 
 export class ListOfRestaurantsScreen extends React.Component {
     constructor(props){
@@ -11,14 +12,15 @@ export class ListOfRestaurantsScreen extends React.Component {
 
     state = {
         searchResults: [],
-        text: ''
+        text: '',
+        noResults: false
     };
 
     static navigationOptions = ({navigation}) => {
         return {
+
             headerTitleStyle :{color:'#fff'},
             headerStyle: {backgroundColor:"#b983a7"},
-            headerRight: <Button color='#8f0c63' title='Cart' size={25} onPress={() => navigation.navigate('Cart')} />
         };
     };
 
@@ -44,15 +46,20 @@ export class ListOfRestaurantsScreen extends React.Component {
             }
         });
 
-        console.log(results);
+        if(results.length === 0){
+            this.setState({noResults: true})
+        }
+
+        console.log(this.state.noResults);
         this.setState({searchResults: results});
     }
 
     displayResults(){
         let results = this.state.searchResults;
+        const {navigate} = this.props.navigation;
 
         let displayedRes = results.map((result) => {
-            return(<View>
+            return(<TouchableOpacity onPress={() => navigate("Menu", {id: result.id})}>
                 <RestaurantIcon 
                     id={result.id}
                     name={result.name}
@@ -61,21 +68,22 @@ export class ListOfRestaurantsScreen extends React.Component {
                     priceRange={result.priceRange}
                     hours={result.hours}
                 ></RestaurantIcon>
-            </View>);
+            </TouchableOpacity>);
         });
+
         return displayedRes;
     }
 
     buttons(){
         const foodTypes = ["Indian", "Lunch", "Dinner", "Late Night", "Chinese", 
-            "Burgers", "Dessert", "Italian", "Pizza", "Vegan" ];
+            "Burgers", "Dessert", "Italian"];
         
         let typeButtons = foodTypes.map((type) => {
-            return <Button
-                color="#b983a7"
+            return <TouchableOpacity
                 style={styles.button} 
-                onPress={() => {this.performSearch(type)}} 
-                title={type}/>
+                onPress={() => {this.performSearch(type)}}>
+                    <Text style={{color: "#fff", alignSelf: 'center', fontSize: 15, fontWeight: 'bold'}}>{type}</Text>
+                </TouchableOpacity>
         })
 
         return typeButtons;
@@ -85,7 +93,7 @@ export class ListOfRestaurantsScreen extends React.Component {
         const {navigate} = this.props.navigation;
 
         const allRests = restaurants.map((restaurant) => 
-            <TouchableHighlight onPress={() => navigate("Menu", {id: restaurant.id})}>
+            <TouchableOpacity onPress={() => navigate("Menu", {id: restaurant.id})}>
                 <RestaurantIcon 
                     id={restaurant.id}
                     name={restaurant.name}
@@ -94,23 +102,25 @@ export class ListOfRestaurantsScreen extends React.Component {
                     priceRange={restaurant.priceRange}
                     hours={restaurant.hours}
                 ></RestaurantIcon>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
 
         return (
             <ScrollView contentContainerStyle={styles.wrapper} style={styles.container}>
-                <Text style={styles.text}>Search for restaurants or cuisines: </Text>
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}
-                />
-                <Button
-                    color="#ccc"
-                    style={styles.button} 
-                    onPress={() => {this.performSearch(this.state.text)}} 
-                    title={"Search!"}/>
-                <View>{this.state.text.length === 0 ? this.buttons() : null}</View>
+                <View style={styles.searchContain}>
+                    <TextInput 
+                        style={styles.textInput}
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}
+                        placeholder="Search or choose a button below"
+                    />
+                    <TouchableOpacity style={styles.searchButton} 
+                        onPress={() => {this.performSearch(this.state.text)}}>
+                            {/* <Text style={styles.searchButtonText}>Searc</Text> */}
+                            <Icon name='search' type='material' color='white'/>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonContainer}>{this.state.text.length === 0 ? this.buttons() : null}</View>
                 <View>{this.state.searchResults.length === 0 ? allRests: this.displayResults()}</View>
             </ScrollView>
         );
@@ -153,7 +163,7 @@ const restaurants = [
         name: "The Restaurant that Only Sells Pizza",
         rating: "5 stars",
         address: "This Street",
-        type: ["italian", "pizza", "lunch", "dinner", "late night", "vegan"],
+        type: ["italian", "lunch", "dinner", "late night"],
         priceRange: "$15-$25",
         hours: "24 hours",
         image: "pizzarest.jpg"
@@ -166,11 +176,51 @@ const styles = StyleSheet.create({
         padding: 30,
         flexDirection: 'column'
     },
-    button: {
-        width: 300,
-        marginBottom: 15,
-        padding: 15,
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+    },
+    searchContain: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: 10
+    },
+    textInput: {
+        flex: 1,
+        height: 40, 
+        borderColor: '#8f0c63', 
+        borderWidth: 2,
         borderRadius: 5,
+        padding: 10,
+        fontSize: 20
+    },
+    searchButton: {
+        flex: 1,
+        backgroundColor: '#8f0c63',
+        borderRadius: 5,
+        justifyContent: 'center',
+        padding: 5,
+        width: 60,
+        marginLeft: 5
+    },
+    searchButtonText:{
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    button: {
+        backgroundColor: "#b983a7",
+        flex: 1,
+        width: 80,
+        height: 40,
+        margin: 3,
+        padding: 7,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     logo: {
         color: '#8f0c63',
@@ -194,8 +244,5 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         borderColor: 'white'
-    },
-    tHigh: {
-        backgroundColor: 'red'
     }
 });

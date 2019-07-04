@@ -7,7 +7,6 @@ export class CityPicker extends React.Component {
         super(props);
 
         this.state = {
-           count: 0,
            labelName: 0
         }
     }
@@ -40,33 +39,12 @@ export class CityPicker extends React.Component {
               labelName: label
             },
             () => {
-              console.log('selectedValue: ' + this.state.labelName)
               index = parseInt(this.state.labelName);
-              console.log(this.cities[index].label);
-              
             }
         )
     }
 
     render(){
-        var styles = StyleSheet.create({
-            citySelect: {
-                width: 300,
-                height: 50,
-                alignSelf: 'center',
-                margin: 10,
-                backgroundColor: '#ffffff',
-                color: '#8f0c63'
-            },
-            text: {
-                alignSelf: 'center',
-                fontSize: 20, 
-                marginTop: 30,
-                marginBottom: 10,
-                color: '#ffffff'
-            }
-        });
-
         const cityItems = this.cities.map((city) => 
             <Picker.Item label={city.label} value={city.value} />
         )
@@ -77,8 +55,26 @@ export class CityPicker extends React.Component {
             onValueChange={(value, index) => this.getCity(value, index)}>
                 {cityItems}    
             </Picker>
-            <Text style={styles.text}>{"Find me restaurants in " + this.cities[this.state.labelName].label + ":"}</Text>
+            <Text style={styles.text}>{"Find restaurants in " + this.cities[this.state.labelName].label + ":"}</Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    citySelect: {
+        width: 300,
+        height: 50,
+        alignSelf: 'center',
+        margin: 10,
+        backgroundColor: '#ffffff',
+        color: '#8f0c63',
+    },
+    text: {
+        alignSelf: 'center',
+        fontSize: 20, 
+        marginTop: 30,
+        marginBottom: 10,
+        color: '#ffffff'
+    }
+});
