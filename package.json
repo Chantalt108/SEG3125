@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Chantalt108/SEG3125/issues"
   },
-  "homepage": "https://github.com/Chantalt108/SEG3125#readme"
+  "homepage": "https://github.com/Chantalt108/SEG3125#readme",
+  "dependencies": {
+    "react-navigation": "^3.11.0"
+  }
 }

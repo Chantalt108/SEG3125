@@ -17,6 +17,12 @@
                     window.location.href = "../ListOfRestaurants/ListOfRestaurants.html";
                 });
             </script>
+            <select id="city-select"></select> 
+            <script>
+                let cities = ['Ottawa', 'Toronto', 'Kingston', 'Montreal'];
+                var citySelect = document.getElementById('city-select').options;
+                cities.forEach(city => citySelect.add(new Option(city)));
+            </script>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8f0c63">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
