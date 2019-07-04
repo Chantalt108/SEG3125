@@ -32,6 +32,13 @@ const AppNavigator = createStackNavigator({
       headerTitle: 'Cart'
     }
 
+  },
+  Checkout: {
+    screen: CheckoutScreen,
+    navigationOptions: {
+      headerTitle: 'Checkout'
+    }
+
   }
 });
 
